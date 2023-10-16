@@ -1,0 +1,45 @@
+@startuml
+
+Class  Pokoj {
+- numerpokoju: int
+- typlozka: String
+- cenaZaNoc: double
+- dostepnosc: boolean
+
++ Pokoj(numerpokoju: int, typlozka: String, cenaZaNoc: double): void
++ getNumerPokoju(): int
++ getTypLozka(): String
++ getCenaZaNoc(): double
++ isDostepny(): boolean
++ zarezerwuj(): void
+}
+
+Class Rezerwacja {
+- dataPrzyjazdu: String
+- dataOdjazdu: String
+- iloscGosci: int
+
++ Rezerwacja(dataPrzyjazdu: String, dataOdjazdu: String, iloscGosci: int): void
++ getDataPrzyjazdu(): String
++ getDataOdjazdu(): String
++ getIloscGosci(): int
+}
+
+Class Hotel {
+- pokoje: List<Pokoj>
++ dodajPokoj(pokoj: Pokoj): void
++ wyswietlDostepnePokoje(): void
++ getAvailablePokoje(): List<Pokoj>
++ zarezerwujPokoj(pokoj: Pokoj, rezerwacja: Rezerwacja): boolean
+}
+
+Class Main {
++ main(args: String[]): void
+}
+
+Hotel --> Pokoj: uses
+Hotel --> Rezerwacja: uses
+Main --> Pokoj: uses
+Main --> Rezerwacja: uses
+Main --> Hotel: uses
+@enduml
